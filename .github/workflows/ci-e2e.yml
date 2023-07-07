@@ -1,15 +1,15 @@
 name: CI - E2E
 on:
   push:
-    tags:
-      - '*'
     paths:
       - '.github/workflows/ci-e2e.yml'
       - 'dprint.json'
+      - 'scripts/**'
   pull_request:
     paths:
       - '.github/workflows/ci-e2e.yml'
       - 'dprint.json'
+      - 'scripts/**'
   schedule:
     # About JST 8:00
     - cron: '0 17 * * *'
