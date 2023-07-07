@@ -25,10 +25,9 @@ jobs:
         with:
           go-version-file: 'go.mod'
           cache-dependency-path: 'go.sum'
-      - name: Wait other jobs
-        uses: kachick/wait-other-jobs@v1.3.0
-        if: startsWith(github.ref, 'refs/tags/')
-        timeout-minutes: 30
+      # TODO: Enable after https://github.com/kachick/wait-other-jobs/issues/474
+      # - name: Wait other jobs
+      #   uses: kachick/wait-other-jobs@v1.3.0
       - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v4
         if: startsWith(github.ref, 'refs/tags/')

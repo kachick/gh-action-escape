@@ -17,14 +17,15 @@ var (
 )
 
 func main() {
-	const usage = `Usage: gh-action-multiline <name>
+	const usage = `Usage: gh-action-multiline [options]
 
-$ your_command | gh-action-multiline output_name >> "$GITHUB_OUTPUT"
-$ your_command | gh-action-multiline ENV_NAME -bytesize=42 >> "$GITHUB_ENV"
+$ your_command | gh-action-multiline -name=output_name >> "$GITHUB_OUTPUT"
+$ your_command | gh-action-multiline -name=ENV_NAME -bytesize=42 >> "$GITHUB_ENV"
 $ gh-action-multiline -version`
 
-	versionFlag := flag.Bool("version", false, "print the version of this program")
+	nameFlag := flag.String("name", "", "specify OUTPUT property or ENV name")
 	byteSizeFlag := flag.Int("bytesize", gham.ByteSizeFromGitHubDoc, "specify delimiter byte size")
+	versionFlag := flag.Bool("version", false, "print the version of this program")
 
 	flag.Usage = func() {
 		// https://github.com/golang/go/issues/57059#issuecomment-1336036866
@@ -40,16 +41,16 @@ $ gh-action-multiline -version`
 	}
 
 	byteSize := *byteSizeFlag
+	name := *nameFlag
+
 	if byteSize < 2 {
-		log.Fatalf("given byte size is too small: %d", byteSize)
+		log.Fatalf("specified byte size is too small: %d", byteSize)
 	}
 
-	if len(os.Args) < 2 {
+	if flag.NArg() != 0 || name == "" {
 		flag.Usage()
 		os.Exit(1)
 	}
-
-	name := os.Args[1]
 
 	nr := gham.DefaultNormalizer()
 

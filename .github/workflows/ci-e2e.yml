@@ -22,14 +22,14 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Install gh-action-multiline
-        run: curl -fsSL https://raw.githubusercontent.com/kachick/gh-action-multiline/${{ github.sha }}/scripts/install-in-github-action.sh | sh -s
+        run: curl -fsSL https://raw.githubusercontent.com/kachick/gh-action-multiline/${{ github.sha }}/scripts/install-in-github-action.sh | sh -s v0.1.1
       - name: Set the value in bash
         id: step_output
-        run: cat dprint.json | gh-action-multiline json >> "$GITHUB_OUTPUT"
+        run: cat dprint.json | gh-action-multiline -name=json >> "$GITHUB_OUTPUT"
       - name: Use product in a before step
         run: test '120' = "${{ fromJson(steps.step_output.outputs.json).prettier.printWidth }}"
       - name: Set the value in bash
         id: step_env
-        run: cat dprint.json | gh-action-multiline JSON_TO_TEST >> "$GITHUB_ENV"
+        run: cat dprint.json | gh-action-multiline -name=JSON_TO_TEST >> "$GITHUB_ENV"
       - name: Use product in a before step
         run: test '120' = "${{ fromJson(env.JSON_TO_TEST).prettier.printWidth }}"
