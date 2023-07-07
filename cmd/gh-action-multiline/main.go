@@ -64,5 +64,5 @@ $ gh-action-multiline -version`
 		log.Fatalf(err.Error())
 	}
 
-	println(normalized)
+	fmt.Println(normalized)
 }
