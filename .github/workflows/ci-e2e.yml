@@ -22,7 +22,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Install gh-action-multiline
-        run: curl -fsSL https://raw.githubusercontent.com/kachick/gh-action-multiline/${{ github.head_ref }}/scripts/install-in-github-action.sh | sh -s
+        run: curl -fsSL https://raw.githubusercontent.com/kachick/gh-action-multiline/${{ github.sha }}/scripts/install-in-github-action.sh | sh -s
       - name: Set the value in bash
         id: step_output
         run: cat dprint.json | gh-action-multiline json >> "$GITHUB_OUTPUT"
