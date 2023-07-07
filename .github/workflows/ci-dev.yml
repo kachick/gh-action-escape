@@ -1,0 +1,31 @@
+name: CI - Development Environment
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/ci-dev.yml'
+      - '*.nix'
+      - 'Taskfile.yml'
+  pull_request:
+    paths:
+      - '.github/workflows/ci-dev.yml'
+      - '*.nix'
+      - 'Taskfile.yml'
+  schedule:
+    # About JST 8:00
+    - cron: '0 17 * * *'
+  workflow_dispatch:
+
+jobs:
+  tasks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v3
+      - uses: DeterminateSystems/nix-installer-action@v4
+      - uses: DeterminateSystems/magic-nix-cache-action@v2
+      - run: nix-build
+      - name: Log current versions
+        run: nix-shell --run 'task versions'
+      - name: Run main task
+        run: nix-shell --run 'task'

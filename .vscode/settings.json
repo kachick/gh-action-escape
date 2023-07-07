@@ -1,0 +1,18 @@
+{
+  "editor.defaultFormatter": "dprint.dprint",
+  "editor.formatOnSave": true,
+  "[nix]": {
+    "editor.defaultFormatter": "jnoortheen.nix-ide"
+  },
+  "[go]": {
+    "editor.defaultFormatter": "golang.go"
+  },
+  "cSpell.words": [
+    "cachix",
+    "cmds",
+    "dprint",
+    "gham",
+    "nixos",
+    "nixpkgs"
+  ]
+}
