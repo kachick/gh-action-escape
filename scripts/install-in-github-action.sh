@@ -3,6 +3,7 @@
 set -e
 
 case $(uname -sm) in
+"Linux x86_64") suffix="Linux_x86_64.tar.gz" ;;
 "Linux aarch64") suffix="Linux_arm64.tar.gz" ;;
 "Linux i386|Linux i586|Linux i686") suffix="Linux_i386.tar.gz" ;;
 "Darwin x86_64") suffix="Darwin_x86_64.tar.gz" ;;
