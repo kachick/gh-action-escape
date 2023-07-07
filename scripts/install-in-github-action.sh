@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 set -e
 
@@ -19,7 +19,9 @@ else
 	archive_uri="https://github.com/kachick/gh-action-multiline/releases/download/${1}/gh-action-multiline_${suffix}"
 fi
 
-mkdir -p /home/runner/.gh-action-multiline/bin
-curl -L "$archive_uri" | tar xvz -C /home/runner/.gh-action-multiline/bin gh-action-multiline
-chmod +x /home/runner/.gh-action-multiline/bin/gh-action-multiline
-echo '/home/runner/.gh-action-multiline/bin' >> "$GITHUB_PATH"
+install_in="${XDG_DATA_HOME:-$HOME}/.gh-action-multiline/bin"
+
+mkdir -p "$install_in"
+curl -L "$archive_uri" | tar xvz -C "$install_in" gh-action-multiline
+chmod +x "${install_in}/gh-action-multiline"
+echo "$install_in" | tee -a "$GITHUB_PATH"
