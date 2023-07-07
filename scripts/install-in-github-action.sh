@@ -13,7 +13,13 @@ case $(uname -sm) in
 	exit 1
 esac
 
+if [ $# -eq 0 ]; then
+	archive_uri="https://github.com/kachick/gh-action-multiline/releases/latest/download/gh-action-multiline_${suffix}"
+else
+	archive_uri="https://github.com/kachick/gh-action-multiline/releases/download/${1}/gh-action-multiline_${suffix}"
+fi
+
 mkdir -p /home/runner/.gh-action-multiline/bin
-curl -L "https://github.com/kachick/gh-action-multiline/releases/download/v0.1.0/gh-action-multiline_${suffix}" | tar xvz -C /home/runner/.gh-action-multiline/bin gh-action-multiline
+curl -L "$archive_uri" | tar xvz -C /home/runner/.gh-action-multiline/bin gh-action-multiline
 chmod +x /home/runner/.gh-action-multiline/bin/gh-action-multiline
 echo '/home/runner/.gh-action-multiline/bin' >> "$GITHUB_PATH"

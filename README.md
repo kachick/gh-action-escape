@@ -31,7 +31,7 @@ After
 steps:
   # Once installed, the cli can be used in all following steps
   - name: Install gh-action-multiline
-    run: curl -fsSL https://raw.githubusercontent.com/kachick/gh-action-multiline/v0.1.0/scripts/install-in-github-action.sh | sh -s
+    run: curl -fsSL https://raw.githubusercontent.com/kachick/gh-action-multiline/main/scripts/install-in-github-action.sh | sh -s v0.1.1
   - name: Set the value in bash
     id: step_one
     run: curl https://example.com | gh-action-multiline json >> "$GITHUB_OUTPUT"
