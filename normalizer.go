@@ -22,7 +22,7 @@ type Base64DelimiterGenerator struct {
 }
 
 var (
-	ErrConflict = errors.New(":<")
+	ErrConflict = errors.New("generated delimiter has been conflicted with given input")
 )
 
 func (b *Base64DelimiterGenerator) Generate(byteSize int) (string, error) {
