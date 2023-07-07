@@ -34,7 +34,7 @@ steps:
     run: curl -fsSL https://raw.githubusercontent.com/kachick/gh-action-multiline/main/scripts/install-in-github-action.sh | sh -s v0.1.1
   - name: Set the value in bash
     id: step_one
-    run: curl https://example.com | gh-action-multiline json >> "$GITHUB_OUTPUT"
+    run: curl https://example.com | gh-action-multiline -name=json >> "$GITHUB_OUTPUT"
   - name: Use product in a before step
     run: echo "The result is ${{ steps.step_one.outputs.json }}"
 ```
