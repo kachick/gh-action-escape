@@ -1,0 +1,35 @@
+name: CI - E2E
+on:
+  push:
+    tags:
+      - '*'
+    paths:
+      - '.github/workflows/ci-e2e.yml'
+      - 'dprint.json'
+  pull_request:
+    paths:
+      - '.github/workflows/ci-e2e.yml'
+      - 'dprint.json'
+  schedule:
+    # About JST 8:00
+    - cron: '0 17 * * *'
+  workflow_dispatch:
+
+jobs:
+  tasks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install gh-action-multiline
+        run: curl -fsSL https://raw.githubusercontent.com/kachick/gh-action-multiline/v0.1.0/scripts/install-in-github-action.sh | sh -s
+      - name: Set the value in bash
+        id: step_output
+        run: cat dprint.json | gh-action-multiline json >> "$GITHUB_OUTPUT"
+      - name: Use product in a before step
+        run: echo "${{ fromJson(steps.step_output.outputs.json).plugins }}"
+      - name: Set the value in bash
+        id: step_env
+        run: cat dprint.json | gh-action-multiline JSON_TO_TEST >> "$GITHUB_ENV"
+      - name: Use product in a before step
+        run: echo "${{ fromJson(env.JSON_TO_TEST).plugins }}"
