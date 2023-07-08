@@ -1,15 +1,17 @@
 name: CI - E2E
 on:
   push:
+    branches:
+      - main
     paths:
       - '.github/workflows/ci-e2e.yml'
-      - 'dprint.json'
       - 'scripts/**'
+      - 'examples/**'
   pull_request:
     paths:
       - '.github/workflows/ci-e2e.yml'
-      - 'dprint.json'
       - 'scripts/**'
+      - 'examples/**'
   schedule:
     # About JST 8:00
     - cron: '0 17 * * *'
@@ -25,11 +27,11 @@ jobs:
         run: curl -fsSL https://raw.githubusercontent.com/kachick/gh-action-multiline/${{ github.sha }}/scripts/install-in-github-action.sh | sh -s v0.1.1
       - name: Set the value in bash
         id: step_output
-        run: cat dprint.json | gh-action-multiline -name=json >> "$GITHUB_OUTPUT"
+        run: cat examples/example.json | gh-action-multiline -name=example_json >> "$GITHUB_OUTPUT"
       - name: Use product in a before step
-        run: test '120' = "${{ fromJson(steps.step_output.outputs.json).prettier.printWidth }}"
+        run: test '6174' = "${{ fromJson(steps.step_output.outputs.example_json).nested.kaprekar_constant }}"
       - name: Set the value in bash
         id: step_env
-        run: cat dprint.json | gh-action-multiline -name=JSON_TO_TEST >> "$GITHUB_ENV"
+        run: cat examples/example.json | gh-action-multiline -name=EXAMPLE_JSON >> "$GITHUB_ENV"
       - name: Use product in a before step
-        run: test '120' = "${{ fromJson(env.JSON_TO_TEST).prettier.printWidth }}"
+        run: test '42' = "${{ fromJson(env.EXAMPLE_JSON).the_answer }}"
