@@ -1,0 +1,10 @@
+{
+  "nested": {
+    "kaprekar_constant": 6174
+  },
+  "urls": [
+    "https://example.com/",
+    "https://example.net/"
+  ],
+  "the_answer": 42
+}

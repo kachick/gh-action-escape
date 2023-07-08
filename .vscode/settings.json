@@ -12,6 +12,7 @@
     "cmds",
     "dprint",
     "gham",
+    "kaprekar",
     "nixos",
     "nixpkgs"
   ]
