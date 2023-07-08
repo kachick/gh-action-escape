@@ -48,6 +48,15 @@ jobs:
       - run: gh-action-multiline -name=example_json < examples/example.json | tee -a "$GITHUB_OUTPUT"
         id: have_output
       - run: test '6174' = "${{ fromJson(steps.have_output.outputs.example_json).nested.kaprekar_constant }}"
+      - name: Output multiple key-value pairs in a step
+        run: |
+          gh-action-multiline -name=example_json < examples/example.json | tee -a "$GITHUB_OUTPUT"
+          gh-action-multiline -name=strange_text < examples/strange.txt | tee -a "$GITHUB_OUTPUT"
+        id: have_multiple_outputs
+      - name: Test above
+        run: |
+          test '42' = "${{ fromJson(steps.have_multiple_outputs.outputs.example_json).the_answer }}"
+          test 'looks_like_a_name=and_looks_like_the_value' = "${{ fromJson(steps.have_multiple_outputs.outputs.example_json).strange_text }}"
       - uses: actions/upload-artifact@v3
         with:
           name: gh-action-multiline
