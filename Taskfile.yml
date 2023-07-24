@@ -34,7 +34,6 @@ tasks:
       - goreleaser check
       - typos . .github .vscode
       - nixpkgs-fmt --check ./*.nix
-      - actionlint
   deps:
     cmds:
       - nix --version
@@ -43,4 +42,3 @@ tasks:
       - dprint --version
       - typos --version
       - goreleaser --version
-      - actionlint --version
