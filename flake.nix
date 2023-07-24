@@ -37,7 +37,7 @@
             '';
             installPhase = ''
               mkdir -p $out/bin
-              install -t $out/bin dist/gh-action-multiline
+              install -t $out/bin dist/bin/gh-action-multiline
             '';
           };
 

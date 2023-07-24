@@ -16,7 +16,7 @@ tasks:
       - goreleaser build --snapshot --single-target --clean --output dist/gh-action-multiline
   build:
     cmds:
-      - go build -o ./dist/gh-action-multiline ./cmd/gh-action-multiline
+      - go build -o ./dist/bin/gh-action-multiline ./cmd/gh-action-multiline
   test:
     cmds:
       - go test
