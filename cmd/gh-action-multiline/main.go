@@ -7,7 +7,7 @@ import (
 	"log"
 	"os"
 
-	gham "gh-action-multiline"
+	gham "github.com/kachick/gh-action-multiline"
 )
 
 var (

@@ -1,4 +1,4 @@
-module gh-action-multiline
+module github.com/kachick/gh-action-multiline
 
 go 1.20
 
