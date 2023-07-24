@@ -19,6 +19,7 @@
               dprint
               go-task
               goreleaser
+              typos
             ];
           };
 
