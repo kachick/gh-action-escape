@@ -7,6 +7,15 @@
   "[go]": {
     "editor.defaultFormatter": "golang.go"
   },
+  "nix.enableLanguageServer": true,
+  "nix.serverPath": "nil",
+  "nix.serverSettings": {
+    "nil": {
+      "formatting": {
+        "command": ["nixpkgs-fmt"]
+      }
+    }
+  },
   "cSpell.words": [
     "cachix",
     "cmds",
