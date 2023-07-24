@@ -39,6 +39,34 @@ steps:
     run: echo "The result is ${{ steps.step_one.outputs.json }}"
 ```
 
+## Installation
+
+[Prebuilt binaries](https://github.com/kachick/gh-action-multiline/releases)
+
+```console
+> curl -L https://github.com/kachick/gh-action-multiline/releases/latest/download/gh-action-multiline_Linux_x86_64.tar.gz | tar xvz -C ./ gh-action-multiline
+> ./gh-action-multiline --version
+...
+```
+
+In [Nix](https://nixos.org/), you can skip installation steps
+
+```console
+> nix run github:kachick/gh-action-multiline -- --version
+gh-action-multiline dev (rev) # unknown
+> nix run github:kachick/gh-action-multiline/v0.1.2 -- --help
+...(With specific version)
+```
+
+`go install`
+
+```console
+> go install github.com/kachick/gh-action-multiline/cmd/gh-action-multiline@latest
+go: downloading...
+> ${GOPATH:-"$HOME/go"}/bin/gh-action-multiline --version
+gh-action-multiline dev (rev) # unknown
+```
+
 ## Motivation
 
 Just for <https://github.com/kachick/depop/pull/27/files>

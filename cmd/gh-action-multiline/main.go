@@ -11,9 +11,12 @@ import (
 )
 
 var (
+	// Used in goreleaser
 	version = "dev"
 	commit  = "none"
 	date    = "unknown"
+
+	revision = "rev"
 )
 
 func main() {
@@ -33,10 +36,14 @@ $ gh-action-multiline -version`
 		flag.PrintDefaults()
 	}
 
+	if len(commit) >= 7 {
+		revision = commit[:7]
+	}
+	version := fmt.Sprintf("%s\n", "gh-action-multiline"+" "+version+" "+"("+revision+") # "+date)
+
 	flag.Parse()
 	if *versionFlag {
-		revision := commit[:7]
-		fmt.Printf("%s\n", "gh-action-multiline"+" "+version+" "+"("+revision+") # "+date)
+		fmt.Println(version)
 		return
 	}
 
