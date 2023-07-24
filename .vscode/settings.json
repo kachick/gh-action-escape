@@ -15,14 +15,5 @@
         "command": ["nixpkgs-fmt"]
       }
     }
-  },
-  "cSpell.words": [
-    "cachix",
-    "cmds",
-    "dprint",
-    "gham",
-    "kaprekar",
-    "nixos",
-    "nixpkgs"
-  ]
+  }
 }
