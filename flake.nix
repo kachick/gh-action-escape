@@ -20,6 +20,7 @@
               go-task
               goreleaser
               typos
+              actionlint
             ];
           };
 
