@@ -12,13 +12,13 @@
 
 > task fmt
 task: [fmt] dprint fmt
-task: [fmt] go fmt
+task: [fmt] go fmt ./...
 
 > task
 task: [build] ..."
-task: [test] go test
+task: [test] go test ./...
 task: [lint] dprint check
-task: [lint] go vet
+task: [lint] go vet ./...
 PASS
 ok      gh-action-multiline    0.313s
 
