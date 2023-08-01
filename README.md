@@ -2,6 +2,7 @@
 
 [![CI - Go](https://github.com/kachick/gh-action-multiline/actions/workflows/ci-go.yml/badge.svg?branch=main)](https://github.com/kachick/gh-action-multiline/actions/workflows/ci-go.yml?query=event%3Apush++)
 [![CI - E2E](https://github.com/kachick/gh-action-multiline/actions/workflows/ci-e2e.yml/badge.svg)](https://github.com/kachick/gh-action-multiline/actions/workflows/ci-e2e.yml)
+[![CI - Nix](https://github.com/kachick/gh-action-multiline/actions/workflows/ci-nix.yml/badge.svg?branch=main)](https://github.com/kachick/gh-action-multiline/actions/workflows/ci-nix.yml?query=branch%3Amain+)
 
 Escape/Wrap given multiline text with random delimiter for `$GITHUB_OUTPUT` and `$GITHUB_ENV`
 
