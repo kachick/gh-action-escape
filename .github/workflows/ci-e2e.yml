@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Install gh-action-multiline
         run: curl -fsSL https://raw.githubusercontent.com/kachick/gh-action-multiline/${{ github.sha }}/scripts/install-in-github-action.sh | sh -s v0.1.1
       - name: Set the value in bash
