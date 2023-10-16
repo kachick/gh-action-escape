@@ -55,7 +55,7 @@ In [Nix](https://nixos.org/), you can skip installation steps
 ```console
 > nix run github:kachick/gh-action-escape -- --version
 gh-action-escape dev (rev) # unknown
-> nix run github:kachick/gh-action-escape/v0.1.2 -- --help
+> nix run github:kachick/gh-action-escape/v0.2.0 -- --help
 ...(With specific version)
 ```
 
