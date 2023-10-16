@@ -25,7 +25,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Install gh-action-escape
-        run: curl -fsSL https://raw.githubusercontent.com/kachick/gh-action-escape/${{ github.sha }}/scripts/install-in-github-action.sh | sh -s v0.1.1
+        run: curl -fsSL https://raw.githubusercontent.com/kachick/gh-action-escape/${{ github.sha }}/scripts/install-in-github-action.sh | sh -s v0.2.0
       - name: Set the value in bash
         id: step_output
         run: cat examples/example.json | gh-action-escape -name=example_json >> "$GITHUB_OUTPUT"

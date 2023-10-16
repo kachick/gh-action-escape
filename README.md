@@ -32,7 +32,7 @@ After
 steps:
   # Once installed, the cli can be used in all following steps
   - name: Install gh-action-escape
-    run: curl -fsSL https://raw.githubusercontent.com/kachick/gh-action-escape/main/scripts/install-in-github-action.sh | sh -s v0.1.1
+    run: curl -fsSL https://raw.githubusercontent.com/kachick/gh-action-escape/main/scripts/install-in-github-action.sh | sh -s v0.2.0
   - name: Set the value in bash
     id: step_one
     run: curl https://example.com | gh-action-escape -name=json >> "$GITHUB_OUTPUT"

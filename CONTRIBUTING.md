@@ -31,5 +31,5 @@ dist/gh-action-escape_linux_amd64_v1/gh-action-escape
 dist/artifacts.json
 
 > ./dist/gh-action-escape_linux_amd64_v1/gh-action-escape --version
-gh-action-escape 0.1.1-next (906924b) # 2023-06-19T09:33:14Z
+gh-action-escape 0.2.0-next (906924b) # 2023-06-19T09:33:14Z
 ```
