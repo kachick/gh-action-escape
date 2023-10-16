@@ -20,10 +20,8 @@
 # Go workspace file
 go.work
 
-# Binary when not used goreleaser
+# Binary
 /gh-action-escape
-
-# goreleaser generates to
-dist/
+/gh-action-escape.exe
 
 .direnv/

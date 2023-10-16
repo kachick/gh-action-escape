@@ -11,7 +11,7 @@ import (
 )
 
 var (
-	// Used in goreleaser
+	// Same naming as goreleaser defaults
 	version = "dev"
 	commit  = "none"
 	date    = "unknown"
