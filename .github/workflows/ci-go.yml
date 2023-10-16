@@ -38,10 +38,6 @@ jobs:
         with:
           version: 3.x
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Install GoReleaser
-        uses: goreleaser/goreleaser-action@v5
-        with:
-          install-only: true
       - run: task build
       - run: tree dist
       - run: readlink -f ./dist/bin >> "$GITHUB_PATH"

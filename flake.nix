@@ -26,7 +26,6 @@
               nixpkgs-fmt
               dprint
               go-task
-              goreleaser
               typos
             ];
           };
