@@ -21,7 +21,7 @@
 go.work
 
 # Binary when not used goreleaser
-/gh-action-multiline
+/gh-action-escape
 
 # goreleaser generates to
 dist/

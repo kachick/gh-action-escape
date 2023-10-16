@@ -7,7 +7,7 @@ import (
 	"log"
 	"os"
 
-	gham "github.com/kachick/gh-action-multiline"
+	gham "github.com/kachick/gh-action-escape"
 )
 
 var (
@@ -20,11 +20,11 @@ var (
 )
 
 func main() {
-	const usage = `Usage: gh-action-multiline [options]
+	const usage = `Usage: gh-action-escape [options]
 
-$ your_command | gh-action-multiline -name=output_name >> "$GITHUB_OUTPUT"
-$ your_command | gh-action-multiline -name=ENV_NAME -bytesize=42 >> "$GITHUB_ENV"
-$ gh-action-multiline -version`
+$ your_command | gh-action-escape -name=output_name >> "$GITHUB_OUTPUT"
+$ your_command | gh-action-escape -name=ENV_NAME -bytesize=42 >> "$GITHUB_ENV"
+$ gh-action-escape -version`
 
 	nameFlag := flag.String("name", "", "specify OUTPUT property or ENV name")
 	byteSizeFlag := flag.Int("bytesize", gham.ByteSizeFromGitHubDoc, "specify delimiter byte size")
@@ -39,7 +39,7 @@ $ gh-action-multiline -version`
 	if len(commit) >= 7 {
 		revision = commit[:7]
 	}
-	version := fmt.Sprintf("%s\n", "gh-action-multiline"+" "+version+" "+"("+revision+") # "+date)
+	version := fmt.Sprintf("%s\n", "gh-action-escape"+" "+version+" "+"("+revision+") # "+date)
 
 	flag.Parse()
 	if *versionFlag {

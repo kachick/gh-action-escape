@@ -31,9 +31,9 @@
             ];
           };
 
-        packages.gh-action-multiline = pkgs.stdenv.mkDerivation
+        packages.gh-action-escape = pkgs.stdenv.mkDerivation
           {
-            name = "gh-action-multiline";
+            name = "gh-action-escape";
             src = self;
             buildInputs = with pkgs; [
               go_1_21
@@ -46,16 +46,16 @@
             '';
             installPhase = ''
               mkdir -p $out/bin
-              install -t $out/bin dist/bin/gh-action-multiline
+              install -t $out/bin dist/bin/gh-action-escape
             '';
           };
 
-        packages.default = packages.gh-action-multiline;
+        packages.default = packages.gh-action-escape;
 
         # `nix run`
         apps.default = {
           type = "app";
-          program = "${packages.gh-action-multiline}/bin/gh-action-multiline";
+          program = "${packages.gh-action-escape}/bin/gh-action-escape";
         };
       }
     );

@@ -1,4 +1,4 @@
-module github.com/kachick/gh-action-multiline
+module github.com/kachick/gh-action-escape
 
 go 1.21
 

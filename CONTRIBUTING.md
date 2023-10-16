@@ -20,16 +20,16 @@ task: [test] go test ./...
 task: [lint] dprint check
 task: [lint] go vet ./...
 PASS
-ok      gh-action-multiline    0.313s
+ok      gh-action-escape    0.313s
 
 > find dist
 dist
 dist/metadata.json
 dist/config.yaml
-dist/gh-action-multiline_linux_amd64_v1
-dist/gh-action-multiline_linux_amd64_v1/gh-action-multiline
+dist/gh-action-escape_linux_amd64_v1
+dist/gh-action-escape_linux_amd64_v1/gh-action-escape
 dist/artifacts.json
 
-> ./dist/gh-action-multiline_linux_amd64_v1/gh-action-multiline --version
-gh-action-multiline 0.1.1-next (906924b) # 2023-06-19T09:33:14Z
+> ./dist/gh-action-escape_linux_amd64_v1/gh-action-escape --version
+gh-action-escape 0.2.0-next (906924b) # 2023-06-19T09:33:14Z
 ```
