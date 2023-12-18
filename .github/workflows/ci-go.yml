@@ -57,7 +57,7 @@ jobs:
         run: |
           test '42' = "${{ fromJson(steps.have_multiple_outputs.outputs.example_json).the_answer }}"
           test "looks_like_a_name=and_looks_like_the_value" = "${{ steps.have_multiple_outputs.outputs.strange_text }}"
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: gh-action-escape
           path: dist/bin/gh-action-escape
