@@ -17,7 +17,7 @@ func TestGenerateDelimiter(t *testing.T) {
 	if len(got) != delimiterLength {
 		t.Errorf("generated wrong string %q", got)
 	}
-	for i := 0; i < 1000; i++ {
+	for range 1000 {
 		last, err := generator.Generate(ByteSizeFromGitHubDoc)
 		if err != nil {
 			t.Fatalf("delimiter generation failed: %v", err)
