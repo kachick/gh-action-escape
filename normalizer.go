@@ -39,7 +39,7 @@ func (b *Base64DelimiterGenerator) EncodedLength(byteSize int) int {
 
 func (n *Normalizer) Normalize(name string, value string, byteSize int) (string, error) {
 	const attemptLimit = 100
-	for i := 0; i < attemptLimit; i++ {
+	for range attemptLimit {
 		delimiter, err := n.DelimiterGenerator.Generate(byteSize)
 		if err != nil {
 			return "", err
