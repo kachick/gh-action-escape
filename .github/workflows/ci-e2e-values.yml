@@ -49,17 +49,17 @@ jobs:
           ./dist/bin/gh-action-escape --version
       - name: Set the value in bash
         id: step_output
-        run: cat examples/example.json | ./dist/bin/bin/gh-action-escape -name=example_json | tee -a "$GITHUB_OUTPUT"
+        run: cat examples/example.json | ./dist/bin/gh-action-escape -name=example_json | tee -a "$GITHUB_OUTPUT"
       - name: Use product in a before step
         run: test '6174' = "${{ fromJson(steps.step_output.outputs.example_json).nested.kaprekar_constant }}"
       - name: Set the value in bash
         id: step_env
-        run: cat examples/example.json | ./dist/bin/bin/gh-action-escape -name=EXAMPLE_JSON | tee -a "$GITHUB_ENV"
+        run: cat examples/example.json | ./dist/bin/gh-action-escape -name=EXAMPLE_JSON | tee -a "$GITHUB_ENV"
       - name: Use product in a before step
         run: test '42' = "${{ fromJson(env.EXAMPLE_JSON).the_answer }}"
       - name: When given string ending with new line
         id: step_echo
-        run: echo 'echo outputs as line' | ./dist/bin/bin/gh-action-escape -name=echo | tee -a "$GITHUB_OUTPUT"
+        run: echo 'echo outputs as line' | ./dist/bin/gh-action-escape -name=echo | tee -a "$GITHUB_OUTPUT"
       - name: Use product in a before step
         run: test "echo outputs as line\n" = "${{ steps.step_echo.outputs.echo }}"
       # TODO
