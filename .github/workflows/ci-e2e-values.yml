@@ -1,0 +1,56 @@
+name: CI - E2E
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/ci-e2e.yml'
+      - 'scripts/**'
+      - 'examples/**'
+  pull_request:
+    paths:
+      - '.github/workflows/ci-e2e.yml'
+      - 'scripts/**'
+      - 'examples/**'
+  schedule:
+    # Every 10:42 JST
+    # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule
+    - cron: '42 1 * * *'
+  workflow_dispatch:
+
+defaults:
+  run:
+    # https://pubs.opengroup.org/onlinepubs/009695399/utilities/set.html
+    shell: bash -Ceuo pipefail {0}
+
+jobs:
+  usage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: 'go.mod'
+          cache-dependency-path: 'go.sum'
+      - name: Install gh-action-escape
+        run: go install
+      - name: Set the value in bash
+        id: step_output
+        run: cat examples/example.json | gh-action-escape -name=example_json | tee -a "$GITHUB_OUTPUT"
+      - name: Use product in a before step
+        run: test '6174' = "${{ fromJson(steps.step_output.outputs.example_json).nested.kaprekar_constant }}"
+      - name: Set the value in bash
+        id: step_env
+        run: cat examples/example.json | gh-action-escape -name=EXAMPLE_JSON | tee -a "$GITHUB_ENV"
+      - name: Use product in a before step
+        run: test '42' = "${{ fromJson(env.EXAMPLE_JSON).the_answer }}"
+      - name: When given string ending with new line
+        id: step_echo
+        run: echo 'echo outputs as line' | gh-action-escape -name=echo | tee -a "$GITHUB_OUTPUT"
+      - name: Use product in a before step
+        run: test "echo outputs as line\n" = "${{ steps.step_echo.outputs.echo }}"
+      # TODO
+      # - name: And test chomp flag
+      #   run: test 'echo outputs as line' = "${{ steps.step_echo.outputs.echo }}"

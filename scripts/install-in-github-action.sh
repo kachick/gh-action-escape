@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -e
+set -euo pipefail
 
 case $(uname -sm) in
 "Linux x86_64") suffix="Linux_x86_64.tar.gz" ;;
