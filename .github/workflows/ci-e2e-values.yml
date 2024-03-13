@@ -66,17 +66,17 @@ jobs:
           echo -n "echo outputs as line\n\n\n" | ./dist/bin/gh-action-escape -name=n3 | tee -a "$GITHUB_OUTPUT"
       - name: 'Append line-end with the heredoc restriction - https://askubuntu.com/questions/981741/is-there-something-similar-to-echo-n-in-heredoc-eof'
         run: |
-          ruby -e 'size = ARGV[1].slice(/\n*\z/).size; raise size.to_s if size != Integer(ARGV[2])' \
+          ruby ./scripts/count-line-end.rb \
             "${{ steps.step_echo.outputs.n0 }}" 1
       - name: 'FIXME: Do not add line-end if it already having'
         run: |
-          ruby -e 'size = ARGV[1].slice(/\n*\z/).size; raise size.to_s if size != Integer(ARGV[2])' \
+          ruby ./scripts/count-line-end.rb \
             "${{ steps.step_echo.outputs.n1 }}" 1
       - name: 'FIXME: Trim line-end if it already having'
         run: |
-          ruby -e 'size = ARGV[1].slice(/\n*\z/).size; raise size.to_s if size != Integer(ARGV[2])' \
+          ruby ./scripts/count-line-end.rb \
             "${{ steps.step_echo.outputs.n2 }}" 1
       - name: 'FIXME: Trim line-end just once even if it has multiple'
         run: |
-          ruby -e 'size = ARGV[1].slice(/\n*\z/).size; raise size.to_s if size != Integer(ARGV[2])' \
+          ruby ./scripts/count-line-end.rb \
             "${{ steps.step_echo.outputs.n3 }}" 2
