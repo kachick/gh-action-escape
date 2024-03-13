@@ -1,4 +1,4 @@
-name: CI - E2E
+name: CI - E2E - API
 on:
   push:
     branches:
@@ -31,7 +31,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Install gh-action-escape
         # Refers released versions, so test the detail HEAD logins in another workflow
-        run: curl -fsSL https://raw.githubusercontent.com/${{ github.repository }}/${{ github.sha }}/scripts/install-in-github-action.sh | sh -s v0.2.0
+        run: bash <(curl -fsSL https://raw.githubusercontent.com/${{ github.repository }}/${{ github.sha }}/scripts/install-in-github-action.sh) v0.2.0
       - name: Set the value in bash
         id: step_output
         run: cat examples/example.json | gh-action-escape -name=example_json | tee -a "$GITHUB_OUTPUT"

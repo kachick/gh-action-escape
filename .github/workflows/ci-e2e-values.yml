@@ -1,4 +1,4 @@
-name: CI - E2E
+name: CI - E2E - Values
 on:
   push:
     branches:
