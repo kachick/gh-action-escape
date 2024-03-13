@@ -60,8 +60,8 @@ jobs:
       - name: When given string ending with new line
         id: step_echo
         run: echo 'echo outputs as line' | ./dist/bin/gh-action-escape -name=echo | tee -a "$GITHUB_OUTPUT"
-      - name: Use product in a before step
-        run: test "echo outputs as line\n" = "${{ steps.step_echo.outputs.echo }}"
+      - name: Append line-end even if already having
+        run: test "echo outputs as line\n\n" = "${{ steps.step_echo.outputs.echo }}"
       # TODO
       # - name: And test chomp flag
       #   run: test 'echo outputs as line' = "${{ steps.step_echo.outputs.echo }}"
