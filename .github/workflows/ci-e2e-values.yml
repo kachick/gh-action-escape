@@ -61,7 +61,7 @@ jobs:
         id: step_echo
         run: echo 'echo outputs as line' | ./dist/bin/gh-action-escape -name=echo | tee -a "$GITHUB_OUTPUT"
       - name: Append line-end even if already having
-        run: test "echo outputs as line\n\n" = "${{ steps.step_echo.outputs.echo }}"
+        run: test "$("echo -n outputs as line\n")" = "${{ steps.step_echo.outputs.echo }}"
       # TODO
       # - name: And test chomp flag
       #   run: test 'echo outputs as line' = "${{ steps.step_echo.outputs.echo }}"
