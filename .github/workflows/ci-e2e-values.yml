@@ -61,8 +61,8 @@ jobs:
         id: step_echo
         run: |
           echo -n 'echo outputs as line' | ./dist/bin/gh-action-escape -name=n0 | tee -a "$GITHUB_OUTPUT"
-          echo 'echo outputs as line' | ./dist/bin/gh-action-escape -name=n1 | tee -a "$GITHUB_OUTPUT"
-          echo "echo outputs as line\n" | ./dist/bin/gh-action-escape -name=n2 | tee -a "$GITHUB_OUTPUT"
+          echo -n 'echo outputs as line\n' | ./dist/bin/gh-action-escape -name=n1 | tee -a "$GITHUB_OUTPUT"
+          echo -n "echo outputs as line\n\n" | ./dist/bin/gh-action-escape -name=n2 | tee -a "$GITHUB_OUTPUT"
           echo -n "echo outputs as line\n\n\n" | ./dist/bin/gh-action-escape -name=n3 | tee -a "$GITHUB_OUTPUT"
       - name: 'Do not append line-end, I want to read github code around https://askubuntu.com/questions/981741/is-there-something-similar-to-echo-n-in-heredoc-eof'
         run: |
