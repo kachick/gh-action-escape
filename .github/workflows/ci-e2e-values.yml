@@ -1,0 +1,82 @@
+name: CI - E2E - Values
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/ci-e2e.yml'
+      - 'scripts/**'
+      - 'examples/**'
+  pull_request:
+    paths:
+      - '.github/workflows/ci-e2e.yml'
+      - 'scripts/**'
+      - 'examples/**'
+  schedule:
+    # Every 10:42 JST
+    # https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows#schedule
+    - cron: '42 1 * * *'
+  workflow_dispatch:
+
+defaults:
+  run:
+    # https://pubs.opengroup.org/onlinepubs/009695399/utilities/set.html
+    shell: bash -Ceuo pipefail {0}
+
+jobs:
+  usage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: 'go.mod'
+          cache-dependency-path: 'go.sum'
+      - name: Install Task
+        uses: arduino/setup-task@v2
+        with:
+          version: '3.x' # selfup { "regex": "\\d[^']+", "script": "task --version | cut -d ' ' -f 3" }
+      - name: Install GoReleaser
+        uses: goreleaser/goreleaser-action@v5
+        with:
+          install-only: true
+          version: 'v1.24.0' # selfup { "regex": "\\d[^']+", "script": "goreleaser --version | grep 'GitVersion:' | tr -s ' ' | cut -d ' ' -f 2" }
+      - name: Build and make sure no errors
+        run: |
+          task build
+          ./dist/bin/gh-action-escape --version
+      - name: Set the value in bash
+        id: step_output
+        run: cat examples/example.json | ./dist/bin/gh-action-escape -name=example_json | tee -a "$GITHUB_OUTPUT"
+      - name: Use product in a before step
+        run: test '6174' = "${{ fromJson(steps.step_output.outputs.example_json).nested.kaprekar_constant }}"
+      - name: Set the value in bash
+        id: step_env
+        run: cat examples/example.json | ./dist/bin/gh-action-escape -name=EXAMPLE_JSON | tee -a "$GITHUB_ENV"
+      - name: Use product in a before step
+        run: test '42' = "${{ fromJson(env.EXAMPLE_JSON).the_answer }}"
+      - name: When given string ending with new line
+        id: step_echo
+        run: |
+          echo -n 'echo outputs as line' | ./dist/bin/gh-action-escape -name=n0 | tee -a "$GITHUB_OUTPUT"
+          echo -n 'echo outputs as line\n' | ./dist/bin/gh-action-escape -name=n1 | tee -a "$GITHUB_OUTPUT"
+          echo -n "echo outputs as line\n\n" | ./dist/bin/gh-action-escape -name=n2 | tee -a "$GITHUB_OUTPUT"
+          echo -n "echo outputs as line\n\n\n" | ./dist/bin/gh-action-escape -name=n3 | tee -a "$GITHUB_OUTPUT"
+      - name: 'Do not append line-end, I want to read github code around https://askubuntu.com/questions/981741/is-there-something-similar-to-echo-n-in-heredoc-eof'
+        run: |
+          ruby ./scripts/count-line-end.rb \
+            "${{ steps.step_echo.outputs.n0 }}" 0
+      - name: 'Do not change the number'
+        run: |
+          ruby ./scripts/count-line-end.rb \
+            "${{ steps.step_echo.outputs.n1 }}" 1
+      - name: 'Do not change for more'
+        run: |
+          ruby ./scripts/count-line-end.rb \
+            "${{ steps.step_echo.outputs.n2 }}" 2
+      # - name: 'FIXME: Trim line-end if given chomp option'
+      #   run: |
+      #     ruby ./scripts/count-line-end.rb \
+      #       "${{ steps.step_echo.outputs.n3 }}" 3
