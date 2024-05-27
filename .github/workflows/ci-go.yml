@@ -43,6 +43,8 @@ jobs:
         with:
           install-only: true
       - run: task build
+      - name: Install tree
+        run: sudo apt-get install --no-install-recommends --assume-yes tree
       - run: tree dist
       - run: readlink -f ./dist/bin >> "$GITHUB_PATH"
       - run: gh-action-escape -name=example_json < examples/example.json | tee -a "$GITHUB_OUTPUT"
