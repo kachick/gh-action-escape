@@ -14,7 +14,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       - name: Set up Go
@@ -25,7 +25,7 @@ jobs:
       - run: go test ./...
       - run: go build -v -race ./...
   usage:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       - name: Set up Go
@@ -43,6 +43,8 @@ jobs:
         with:
           install-only: true
       - run: task build
+      - name: Install tree
+        run: sudo apt-get install --no-install-recommends --assume-yes tree
       - run: tree dist
       - run: readlink -f ./dist/bin >> "$GITHUB_PATH"
       - run: gh-action-escape -name=example_json < examples/example.json | tee -a "$GITHUB_OUTPUT"
@@ -63,7 +65,7 @@ jobs:
           path: dist/bin/gh-action-escape
           if-no-files-found: error
   lint:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       - name: Set up Go
