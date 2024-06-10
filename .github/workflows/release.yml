@@ -36,7 +36,7 @@ jobs:
             ]
         timeout-minutes: 10
       - name: Run GoReleaser
-        uses: goreleaser/goreleaser-action@v5
+        uses: goreleaser/goreleaser-action@v6
         if: startsWith(github.ref, 'refs/tags/')
         with:
           distribution: goreleaser
