@@ -21,7 +21,7 @@
               # https://github.com/NixOS/nix/issues/730#issuecomment-162323824
               bashInteractive
 
-              go_1_22
+              go_1_23
               nil
               nixpkgs-fmt
               dprint
@@ -36,7 +36,7 @@
             name = "gh-action-escape";
             src = self;
             buildInputs = with pkgs; [
-              go_1_22
+              go_1_23
               go-task
             ];
             buildPhase = ''
