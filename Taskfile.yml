@@ -25,7 +25,7 @@ tasks:
       - typos . .github .vscode --write-changes
       - dprint fmt
       - go fmt ./...
-      - nixpkgs-fmt ./*.nix
+      - nixfmt ./*.nix
   lint:
     # go fmt does not have option for no effect - https://github.com/golang/go/issues/41189
     cmds:
@@ -33,7 +33,11 @@ tasks:
       - go vet ./...
       - goreleaser check
       - typos . .github .vscode
-      - nixpkgs-fmt --check ./*.nix
+      - nixfmt --check ./*.nix
+      - git ls-files | xargs selfup list -check
+  selfup:
+    cmds:
+      - git ls-files | xargs selfup run
   deps:
     cmds:
       - nix --version
@@ -42,3 +46,4 @@ tasks:
       - dprint --version
       - typos --version
       - goreleaser --version
+      - nixfmt --version
