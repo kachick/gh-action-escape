@@ -1,5 +1,15 @@
 # gh-action-escape
 
+- _**This repository is archived**_
+- _**No longer maintained**_
+- [The latest example written in the official document](https://github.com/github/docs/commit/7d4ff28eadd26c88f6e03b0d37bca0443bbda44b#diff-e36f2c4f1748b80190b49e95e37a7ba838b3546552d82452463979b8bbf3e057R861-R865) is readable enough for me.
+- Example of how to remove this dependency.
+  - <https://github.com/kachick/depop/pull/204>
+  - <https://github.com/kachick/containers/pull/183>
+  - <https://github.com/kachick/dotfiles/pull/1078>
+
+---
+
 [![CI - Go](https://github.com/kachick/gh-action-escape/actions/workflows/ci-go.yml/badge.svg?branch=main)](https://github.com/kachick/gh-action-escape/actions/workflows/ci-go.yml?query=event%3Apush++)
 [![CI - E2E](https://github.com/kachick/gh-action-escape/actions/workflows/ci-e2e.yml/badge.svg)](https://github.com/kachick/gh-action-escape/actions/workflows/ci-e2e.yml)
 [![CI - Nix](https://github.com/kachick/gh-action-escape/actions/workflows/ci-nix.yml/badge.svg?branch=main)](https://github.com/kachick/gh-action-escape/actions/workflows/ci-nix.yml?query=branch%3Amain+)
